@@ -15,9 +15,19 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server:build": "tsc",
+    "server:build:watch": "tsc --watch",
+    "server:dev": "tsx src/server.ts",
+    "server:inspect": "set DANGEROUSLY_OMIT_AUTH=true && npx @modelcontextprotocol/inspector npm run server:dev",
+    "client:dev": "tsx src/client.ts"
   },
   "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.7",
+    "@types/node": "^24.4.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5"
   }
 }
