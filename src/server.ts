@@ -14,6 +14,32 @@ const server = new McpServer({
     }
 })
 
+// create a resource
+server.resource(
+    "users",
+    "users://all",
+    {
+        title: "Users",
+        description: "Get all users data from the databse",
+        mimeType: "application/json",
+    },
+    async uri => {
+        const users = await import("./data/users.json", {
+            with: { type: "json" },
+        }).then(m => m.default)
+
+        return {
+            contents: [
+                {
+                    uri: uri.href,
+                    text: JSON.stringify(users),
+                    mimeType: "application/json",
+                }
+            ]
+        }
+    }
+)
+
 //create a tool
 server.tool("create-user", "Create a new user in the database", {
     name: z.string(),
