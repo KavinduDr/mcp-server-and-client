@@ -20,7 +20,7 @@ server.resource(
     "users://all",
     {
         title: "Users",
-        description: "Get all users data from the databse",
+        description: "Get all users data from the database",
         mimeType: "application/json",
     },
     async uri => {
