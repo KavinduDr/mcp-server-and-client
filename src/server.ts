@@ -139,13 +139,7 @@ server.tool("create-random-user", "Create a random user with the fake data", {
     }
 
     try {
-        const fakeUser = JSON.parse(
-            res.content.text.trim()
-                .replace(/^```json/, "")
-                .replace(/```$/, "")
-                .trim()
-
-        )
+        const fakeUser = JSON.parse(res.content.text.trim().replace(/^```json/, "").replace(/```$/, "").trim())
 
         const id = await createUser(fakeUser)
 
