@@ -105,6 +105,13 @@
   },
   {
     "id": 15,
+    "name": "Amila",
+    "email": "amila@amila.com",
+    "address": "nasdoweusda",
+    "phone": "0987654321"
+  },
+  {
+    "id": 16,
     "name": "Emily Carter",
     "email": "emily.carter92@example.com",
     "address": "742 Maple Avenue, Springfield, IL 62704",
