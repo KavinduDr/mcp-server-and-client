@@ -102,5 +102,12 @@
     "email": "a.smith@example.com",
     "address": "123 Main Street, Springfield, IL 62704",
     "phone": "+1-217-555-0198"
+  },
+  {
+    "id": 15,
+    "name": "Amila",
+    "email": "amila@amila.com",
+    "address": "nasdoweusda",
+    "phone": "0987654321"
   }
 ]
