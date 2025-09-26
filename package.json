@@ -28,8 +28,10 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "@ai-sdk/google": "^2.0.16",
     "@inquirer/prompts": "^7.8.6",
     "@modelcontextprotocol/sdk": "^1.17.5",
+    "ai": "^5.0.52",
     "dotenv": "^17.2.2",
     "zod": "^3.25.76"
   }
