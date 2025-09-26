@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateText } from "ai";
+import { generateText, jsonSchema, ToolSet } from "ai";
 import { confirm, input, select } from "@inquirer/prompts";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
@@ -99,8 +99,58 @@ async function main() {
                     await handlePrompt(prompt)
                 }
                 break;
+            case "Query":
+                await handleQuery(tools)
         }
     }
+}
+
+async function handleQuery(tools: Tool[]) {
+    const query = await input({ message: "Enter your query" })
+
+    const { text, toolResults } = await generateText({
+        model: google("gemini-2.0-flash"),
+        prompt: query,
+        tools: tools.reduce(
+            (obj: ToolSet, tool) => {
+                // Make sure we always have a valid schema structure for Google Gemini
+                const schema = {
+                    type: "object" as const,
+                    properties: {} as Record<string, any>
+                };
+
+                // If the tool has a proper schema with properties, use those
+                if (tool.inputSchema && tool.inputSchema.properties) {
+                    // Convert each property to a proper JSON schema
+                    const props: Record<string, any> = {};
+                    for (const [key, value] of Object.entries(tool.inputSchema.properties)) {
+                        props[key] = { type: (value as any).type || "string" };
+                    }
+                    schema.properties = props;
+                }
+
+                return {
+                    ...obj,
+                    [tool.name]: {
+                        description: tool.description || "",
+                        inputSchema: jsonSchema(schema),
+                        execute: async (args: Record<string, any>) => {
+                            const result = await mcp.callTool({
+                                name: tool.name,
+                                arguments: args,
+                            });
+                            return result.content;
+                        },
+                    },
+                };
+            },
+            {} as ToolSet
+        ),
+    })
+
+    console.log(
+        text || toolResults[0]?.output[0]?.text || "No text generated."
+    )
 }
 
 async function handleTool(tool: Tool) {
