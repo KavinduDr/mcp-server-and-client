@@ -105,9 +105,14 @@
   },
   {
     "id": 15,
-    "name": "Amilan",
-    "email": "amilan@test.com",
-    "address": "asdasdwqe",
-    "phone": "123123456"
+    "name": "Sophia Rodriguez",
+    "email": "sophia.rodriguez78@email.com",
+    "address": {
+      "street": "456 Oak Avenue",
+      "city": "Springfield",
+      "state": "IL",
+      "zip": "62704"
+    },
+    "phone": "217-555-9876"
   }
 ]
