@@ -105,16 +105,9 @@
   },
   {
     "id": 15,
-    "name": "Amila",
-    "email": "amila@amila.com",
-    "address": "nasdoweusda",
-    "phone": "0987654321"
-  },
-  {
-    "id": 16,
-    "name": "Emily Carter",
-    "email": "emily.carter92@example.com",
-    "address": "742 Maple Avenue, Springfield, IL 62704",
-    "phone": "+1-217-555-3842"
+    "name": "Amilan",
+    "email": "amilan@test.com",
+    "address": "asdasdwqe",
+    "phone": "123123456"
   }
 ]
